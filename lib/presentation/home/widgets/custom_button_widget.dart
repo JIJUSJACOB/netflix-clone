@@ -4,11 +4,17 @@ import '../../../core/colors/colors.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   const CustomButtonWidget({
-    Key? key, required this.title, required this.icon,
+    Key? key,
+    required this.title,
+    required this.icon,
+     this.iconSize = 30,
+     this.textSize = 16,
   }) : super(key: key);
 
   final String title;
   final IconData icon;
+  final double iconSize;
+  final double textSize;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +23,11 @@ class CustomButtonWidget extends StatelessWidget {
         Icon(
           icon,
           color: kWhite,
-          size: 30,
+          size: iconSize,
         ),
         Text(
           title,
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(fontSize: textSize),
         )
       ],
     );

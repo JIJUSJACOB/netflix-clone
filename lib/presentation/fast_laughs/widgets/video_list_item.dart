@@ -6,6 +6,8 @@ import 'package:netflix_app/domain/downloads/models/downloads.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../core/colors/colors.dart';
+
 class VideoListItemInheritedWidget extends InheritedWidget {
   final Widget widget;
   final Downloads movieData;
@@ -54,13 +56,18 @@ class VideoListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   //left side
-                  CircleAvatar(
-                    radius: 30,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.volume_mute),
+                   CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.black.withOpacity(0.5),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.volume_mute,
+                          color: kWhite,
+                          size: 30,
+                        ),
+                      ),
                     ),
-                  ),
 
                   //right side
                   Column(
