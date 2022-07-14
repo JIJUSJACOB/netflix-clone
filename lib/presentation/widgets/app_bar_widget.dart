@@ -26,7 +26,8 @@ class AppBarWidget extends StatelessWidget {
           width: 30,
           height: 30,
           color: Colors.blue,
-        )
+        ),
+        kWidth,
       ],
     );
   }
