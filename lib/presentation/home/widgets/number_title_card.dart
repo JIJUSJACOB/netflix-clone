@@ -5,8 +5,10 @@ import '../../widgets/main_title.dart';
 import 'number_card.dart';
 
 class NumberTitleCard extends StatelessWidget {
+  final List<String> imageUrls;
   const NumberTitleCard({
     Key? key,
+    required this.imageUrls,
   }) : super(key: key);
 
   @override
@@ -14,16 +16,17 @@ class NumberTitleCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MainTitle(title: 'gdf gfdg'),
+        MainTitle(title: 'Top 10 Trending this year'),
         kHeigth,
         LimitedBox(
           maxHeight: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              10,
+              imageUrls.length,
               (index) => NumberCard(
                 index: index,
+                url: imageUrls[index],
               ),
             ),
           ),

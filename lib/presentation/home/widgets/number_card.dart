@@ -7,8 +7,10 @@ import '../../widgets/main_item_card.dart';
 import '../../widgets/main_title.dart';
 
 class NumberCard extends StatelessWidget {
+  final String url;
   final int index;
-  const NumberCard({Key? key, required this.index}) : super(key: key);
+  const NumberCard({Key? key, required this.index, required this.url})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,8 @@ class NumberCard extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                 borderRadius: kRadius20,
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://www.themoviedb.org/t/p/w440_and_h660_face/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg')),
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: NetworkImage(url)),
               ),
             ),
           ],

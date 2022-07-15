@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_app/core/colors/colors.dart';
 import 'package:netflix_app/presentation/home/widgets/background_card.dart';
 import 'package:netflix_app/presentation/home/widgets/number_card.dart';
 
+import '../../application/home/home_bloc.dart';
 import '../../core/constants.dart';
 import '../widgets/main_item_card.dart';
 import '../widgets/main_title.dart';
@@ -18,6 +20,11 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print('object');
+      BlocProvider.of<HomeBloc>(context)
+          .add(const HomeEvent.getHomeScreenData());
+    });
     return Scaffold(
         body: ValueListenableBuilder(
       valueListenable: scrollNotifier,
@@ -35,30 +42,69 @@ class ScreenHome extends StatelessWidget {
             },
             child: Stack(
               children: [
-                ListView(
-                  children: [
-                    BackGroundCard(),
-                    kHeigth,
-                    kHeigth,
-                    MainTitleCard(
-                      title: 'Released in the past year',
-                    ),
-                    kHeigth,
-                    MainTitleCard(
-                      title: 'Top Picks',
-                    ),
-                    kHeigth,
-                    NumberTitleCard(),
-                    kHeigth,
-                    MainTitleCard(
-                      title: 'Tense Dramas',
-                    ),
-                    kHeigth,
-                    MainTitleCard(
-                      title: 'Soputh Indian Cinema',
-                    ),
-                    kHeigth,
-                  ],
+                BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    if (state.isLoading) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state.isError) {
+                      return Center(
+                        child: Text(
+                          'Error while loading home screen',
+                          style: TextStyle(
+                            color: kWhite,
+                          ),
+                        ),
+                      );
+                    }
+                    final _releasedPastYear = state.pastYearMovieList.map((e) {
+                      return '$imageAppendURL${e.posterPath}';
+                    }).toList();
+                    final _trending = state.trendingMovieList.map((e) {
+                      return '$imageAppendURL${e.posterPath}';
+                    }).toList();
+                    // _trending.shuffle();
+                    final _tenseDramas = state.tenseDramasMovieList.map((e) {
+                      return '$imageAppendURL${e.posterPath}';
+                    }).toList();
+                    final _southIndian = state.southIndianMovieList.map((e) {
+                      return '$imageAppendURL${e.posterPath}';
+                    }).toList();
+                    // _southIndian.shuffle();
+                    return ListView(
+                      children: [
+                        BackGroundCard(url: '$imageAppendURL/4Q1n3TwieoULnuaztu9aFjqHDTI.jpg',),
+                        kHeigth,
+                        kHeigth,
+                        MainTitleCard(
+                          title: 'Released in the past year',
+                          posterList: _releasedPastYear,
+                        ),
+                        kHeigth,
+                        MainTitleCard(
+                          title: 'Top Picks',
+                          posterList: _trending,
+                        ),
+                        kHeigth,
+                        NumberTitleCard(
+                            imageUrls: state.trendingTvList
+                                .map((e) => '$imageAppendURL${e.posterPath}')
+                                .toList()),
+                        kHeigth,
+                        MainTitleCard(
+                          title: 'Tense Dramas',
+                          posterList: _tenseDramas,
+                        ),
+                        kHeigth,
+                        MainTitleCard(
+                          title: 'Soputh Indian Cinema',
+                          posterList: _southIndian,
+                        ),
+                        kHeigth,
+                      ],
+                    );
+                  },
                 ),
                 scrollNotifier.value
                     ? AnimatedContainer(

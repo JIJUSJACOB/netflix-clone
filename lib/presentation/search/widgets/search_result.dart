@@ -25,12 +25,15 @@ class SearchResult extends StatelessWidget {
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
               childAspectRatio: 1 / 2,
-              children: List.generate(20, (index) {
-                final movie = state.searchListResult[index];
-                return MainCard(
-                  imageUrl: movie.posterPathUrl,
-                );
-              }),
+              children: List.generate(
+                state.searchListResult.length,
+                (index) {
+                  final movie = state.searchListResult[index];
+                  return MainCard(
+                    imageUrl: movie.posterPathUrl,
+                  );
+                },
+              ),
             );
           },
         )),

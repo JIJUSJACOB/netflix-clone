@@ -7,7 +7,8 @@ import '../../../core/constants.dart';
 import 'custom_button_widget.dart';
 
 class BackGroundCard extends StatelessWidget {
-  const BackGroundCard({Key? key}) : super(key: key);
+  final String url;
+  const BackGroundCard({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +19,9 @@ class BackGroundCard extends StatelessWidget {
           height: 600,
           decoration: BoxDecoration(
             borderRadius: kRadius20,
-            image: const DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage('g'),
+              image: NetworkImage(url),
             ),
           ),
         ),
