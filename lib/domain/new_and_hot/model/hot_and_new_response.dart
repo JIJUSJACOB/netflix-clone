@@ -28,6 +28,10 @@ class HotAndNewData {
   String? originalLanguage;
   @JsonKey(name: 'original_title')
   String? originalTitle;
+//in case of tv series , use original name instead of original title
+  @JsonKey(name: 'original_name')
+  String? originalname;
+  String? name;
   String? overview;
   @JsonKey(name: 'poster_path')
   String? posterPath;

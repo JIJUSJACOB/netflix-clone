@@ -17,7 +17,7 @@ class HotAndNewBloc extends Bloc<HotAndNewEvent, HotAndNewState> {
       emit(const HotAndNewState(
         commingSoonList: [],
         everyonesWatchingList: [],
-        isLoading: false,
+        isLoading: true,
         hasError: false,
       ));
       final result = await _hotAndNewService.getHotandNewMovieData();
@@ -35,8 +35,26 @@ class HotAndNewBloc extends Bloc<HotAndNewEvent, HotAndNewState> {
       emit(newState);
     });
 
-    on<LoadDataInEveryonesWatching>((event, emit) {
-      // TODO: implement event handler
+    on<LoadDataInEveryonesWatching>((event, emit) async {
+       emit( state.copyWith(
+        commingSoonList: state.commingSoonList,
+        everyonesWatchingList: state.everyonesWatchingList,
+        isLoading: true,
+        hasError: false,
+      ));
+      final result = await _hotAndNewService.getHotandNewTvData();
+      final newState = result.fold((l) {
+        print(l);
+        return state.copyWith(hasError: true, isLoading: false);
+      }, (r) {
+        return state.copyWith(
+          hasError: false,
+          isLoading: false,
+          commingSoonList: state.commingSoonList,
+          everyonesWatchingList: r.results,
+        );
+      });
+      emit(newState);
     });
   }
 }

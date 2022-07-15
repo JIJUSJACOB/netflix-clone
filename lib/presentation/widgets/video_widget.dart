@@ -19,6 +19,25 @@ class VideoWidget extends StatelessWidget {
           child: Image.network(
             url,
             fit: BoxFit.cover,
+            loadingBuilder:
+                (BuildContext _, Widget child, ImageChunkEvent? progress) {
+              if (progress == null) {
+                return child;
+              } else {
+                return Center(
+                    child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.red,
+                ));
+              }
+            },
+            errorBuilder: (BuildContext _, Object a, StackTrace? trace) {
+              return Center(
+                  child: Icon(
+                Icons.wifi,
+                color: kWhite,
+              ));
+            },
           ),
         ),
         Positioned(
