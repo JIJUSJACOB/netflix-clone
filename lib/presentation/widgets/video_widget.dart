@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../../core/colors/colors.dart';
 
 class VideoWidget extends StatelessWidget {
+  final String url;
   const VideoWidget({
     Key? key,
+    required this.url,
   }) : super(key: key);
 
   @override
@@ -15,7 +17,7 @@ class VideoWidget extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            'https://cdn.vox-cdn.com/thumbor/370CQdn5QDXoaadqM5TP1Rn9l-g=/0x0:2040x1360/1200x800/filters:focal(857x517:1183x843)/cdn.vox-cdn.com/uploads/chorus_image/image/71104668/acastro_211025_1777_netflix_0001.0.jpeg',
+            url,
             fit: BoxFit.cover,
           ),
         ),

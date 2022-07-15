@@ -5,4 +5,4 @@ const kHeigth = SizedBox(height: 10);
 const imageAppendURL = "https://image.tmdb.org/t/p/w500";
 
 //BorderRadius
-final BorderRadius kRadius20 = BorderRadius.circular(20); 
+final BorderRadius kRadius20 = BorderRadius.circular(20);

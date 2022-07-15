@@ -16,7 +16,6 @@ class DownLoadsRepository implements IDownloadsRepo {
       final Response response =
           await Dio(BaseOptions()).get(ApiEndPoints.downloads);
       if (response.statusCode == 200 || response.statusCode == 201) {
-      
         final downloadsList = (response.data['results'] as List).map((value) {
           return Downloads.fromJson(value as Map<String, dynamic>);
         }).toList();

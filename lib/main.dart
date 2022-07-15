@@ -7,6 +7,7 @@ import 'package:netflix_app/domain/core/di/injectable.dart';
 import 'package:netflix_app/presentation/main_page/screen_main_page.dart';
 
 import 'application/fast_laugh/fastlaugh_bloc.dart';
+import 'application/hot_and_new/hot_and_new_bloc.dart';
 import 'application/search/search_bloc.dart';
 
 Future<void> main() async {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<DownloadsBloc>()),
         BlocProvider(create: (ctx) => getIt<SearchBloc>()),
         BlocProvider(create: (ctx) => getIt<FastlaughBloc>()),
+        BlocProvider(create: (ctx) => getIt<HotAndNewBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
             ),
             primarySwatch: Colors.blue,
             backgroundColor: Colors.black,
-             scaffoldBackgroundColor: backgroundColor,
+            scaffoldBackgroundColor: backgroundColor,
             fontFamily: GoogleFonts.montserrat().fontFamily,
             textTheme: const TextTheme(
                 bodyText1: TextStyle(color: Colors.white),

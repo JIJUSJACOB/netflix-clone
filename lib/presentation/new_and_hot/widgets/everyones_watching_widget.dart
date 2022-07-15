@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants.dart';
+import '../../../domain/new_and_hot/model/hot_and_new_response.dart';
 import '../../home/widgets/custom_button_widget.dart';
 import '../../widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  const EveryonesWatchingWidget({Key? key}) : super(key: key);
+  final HotAndNewData data;
+  const EveryonesWatchingWidget({Key? key, required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,10 @@ class EveryonesWatchingWidget extends StatelessWidget {
         SizedBox(
           height: 50,
         ),
-        VideoWidget(),
+        VideoWidget(
+          url:
+              'https://cdn.vox-cdn.com/thumbor/370CQdn5QDXoaadqM5TP1Rn9l-g=/0x0:2040x1360/1200x800/filters:focal(857x517:1183x843)/cdn.vox-cdn.com/uploads/chorus_image/image/71104668/acastro_211025_1777_netflix_0001.0.jpeg',
+        ),
         kHeigth,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

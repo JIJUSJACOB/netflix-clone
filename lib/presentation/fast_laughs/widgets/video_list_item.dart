@@ -56,18 +56,18 @@ class VideoListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   //left side
-                   CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.volume_mute,
-                          color: kWhite,
-                          size: 30,
-                        ),
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.black.withOpacity(0.5),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.volume_mute,
+                        color: kWhite,
+                        size: 30,
                       ),
                     ),
+                  ),
 
                   //right side
                   Column(
@@ -87,25 +87,24 @@ class VideoListItem extends StatelessWidget {
                               onTap: () {
                                 likedVideosIdsNotifier.value.remove(_index);
                                 likedVideosIdsNotifier.notifyListeners();
-                                
                               },
                               child: const VideoActions(
                                 icon: Icons.favorite_outline,
                                 title: "liked",
                               ),
                             );
-                          } 
+                          }
                           // else {
-                            return GestureDetector(
-                              onTap: () {
-                               likedVideosIdsNotifier.value.add(_index);
-                               likedVideosIdsNotifier.notifyListeners();
-                              },
-                              child: const VideoActions(
-                                icon: Icons.emoji_emotions,
-                                title: "lol",
-                              ),
-                            );
+                          return GestureDetector(
+                            onTap: () {
+                              likedVideosIdsNotifier.value.add(_index);
+                              likedVideosIdsNotifier.notifyListeners();
+                            },
+                            child: const VideoActions(
+                              icon: Icons.emoji_emotions,
+                              title: "lol",
+                            ),
+                          );
                           // }
                           // return VideoActions(
                           //   icon: Icons.emoji_emotions,

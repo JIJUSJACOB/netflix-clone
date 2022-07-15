@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/colors/colors.dart';
 import '../../../core/constants.dart';
+import '../../../domain/new_and_hot/model/hot_and_new_response.dart';
 import '../../home/widgets/custom_button_widget.dart';
 import '../../widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
+  final HotAndNewData data;
   const CommingSoonWidget({
     Key? key,
+    required this.data,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _date = DateTime.parse(data.releaseDate!);
+    final formattedDate =  DateFormat.yMMMMd('en_US').format(_date);
     Size size = MediaQuery.of(context).size;
     return Row(
       children: [
@@ -20,13 +26,13 @@ class CommingSoonWidget extends StatelessWidget {
           height: 500,
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             kHeigth,
-            Text('FEB',
+            Text(formattedDate.split(' ').first.substring(0,3),
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     color: Colors.grey)),
             Text(
-              '11',
+              data.releaseDate?.split('-').last ?? '-',
               style: TextStyle(
                 letterSpacing: 4,
                 fontWeight: FontWeight.bold,
@@ -41,16 +47,18 @@ class CommingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              VideoWidget(),
+              VideoWidget(url: '$imageAppendURL${data.posterPath}'),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'TALL GIRL 2',
-                    style: TextStyle(
-                      letterSpacing: -4,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
+                  Expanded(
+                    child: Text(
+                      data.title ?? '',
+                      style: TextStyle(
+                        letterSpacing: -4,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                      ),
                     ),
                   ),
                   Row(
@@ -74,10 +82,10 @@ class CommingSoonWidget extends StatelessWidget {
                 ],
               ),
               kHeigth,
-              Text('Comming on froday'),
+              Text('Comming on ${data.releaseDate}'),
               kHeigth,
               Text(
-                'Tall Girl 2',
+                data.originalTitle ?? '',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -85,7 +93,8 @@ class CommingSoonWidget extends StatelessWidget {
               ),
               kHeigth,
               Text(
-                'hjghrjg okg kfokfgod skgod kgok jgjg jglifidfjgdfgjfo igjfdop jkgdfiogj oigjdf oigjlds jgdog jkpg dgods jkgopd jgopsdkg odjg pod jgdsgj fojh jgpogp jsdpojg sgjoigj iogjspog jpoigj ogjopgjdoi gjsdog jdgopj doigj ogjdsoig jiojgiodsjgopsjgopsjopdsjgopdsj gopidsj goj goid jgoig djoisjgoi jgoi jg djij doigjiogjoioijoigh oigjoigjs',
+                data.overview ?? '',
+                maxLines: 4,
                 style: TextStyle(color: Colors.grey),
               )
             ],
@@ -95,4 +104,3 @@ class CommingSoonWidget extends StatelessWidget {
     );
   }
 }
-

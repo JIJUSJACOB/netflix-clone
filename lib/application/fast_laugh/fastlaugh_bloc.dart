@@ -48,9 +48,7 @@ class FastlaughBloc extends Bloc<FastlaughEvent, FastlaughState> {
       emit(_state);
     });
 
-    on<LikeVideo>((event, emit) async {
-      
-    });
+    on<LikeVideo>((event, emit) async {});
 
     on<UnlikeVideo>((event, emit) async {
       likedVideosIdsNotifier.value.remove(event.id);

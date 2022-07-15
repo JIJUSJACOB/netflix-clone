@@ -12,37 +12,42 @@ class BackGroundCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 600,
-              decoration: BoxDecoration(
-                borderRadius: kRadius20,
-                image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      'https://www.themoviedb.org/t/p/w440_and_h660_face/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg'),
-                ),
-              ),
+      children: [
+        Container(
+          width: double.infinity,
+          height: 600,
+          decoration: BoxDecoration(
+            borderRadius: kRadius20,
+            image: const DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage('g'),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom:8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CustomButtonWidget(icon: Icons.add, title: 'My List',),
-                    _PlayButton(),
-                     CustomButtonWidget(icon: Icons.info, title: 'Info',),
-                  ],
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CustomButtonWidget(
+                  icon: Icons.add,
+                  title: 'My List',
                 ),
-              ),
+                _PlayButton(),
+                CustomButtonWidget(
+                  icon: Icons.info,
+                  title: 'Info',
+                ),
+              ],
             ),
-          ],
-        );
+          ),
+        ),
+      ],
+    );
   }
 
   TextButton _PlayButton() {
@@ -63,5 +68,4 @@ class BackGroundCard extends StatelessWidget {
       ),
     );
   }
-  
 }
